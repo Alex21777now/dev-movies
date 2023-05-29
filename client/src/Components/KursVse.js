@@ -54,7 +54,7 @@ function AddSlide() { return (
 
 return (
   <div>
-  <button onClick={() => props.addSlide()}>add slide</button>
+ 
   <p>{ props.error }</p>
   { props.key1 &&
     <div>

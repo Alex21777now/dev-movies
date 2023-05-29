@@ -5,6 +5,9 @@ export default class Contacts extends Component {
       return (
         <div>
           <div>
+          <p></p>
+                            <strong>ОБИРАЙ УЛЮБЛЕНІ ФІЛЬМИ</strong>
+                            <p>&nbsp;</p>
               Contacts
           </div>
           <div>

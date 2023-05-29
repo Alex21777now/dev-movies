@@ -28,7 +28,7 @@ export default class Header extends Component {
                 width="30"
                 className="d-inline-block align-top"
                 alt="Logo"
-              /> My TODOS
+              /> DEV MOVIES
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -39,12 +39,15 @@ export default class Header extends Component {
                 <Nav.Link href="/blog"> Blog </Nav.Link>
               </Nav>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
               <Form inline>
-                <FormControl
+                {/*<FormControl
                   type="text"
                   placeholder="Search"
                   className="mr-sm-2"
                 />&emsp;
-                <Button variant="outline-info mt-1">Search</Button>
+                <Button variant="outline-info mt-1">Search</Button>*/}
+                <Button variant="danger mt-1">Sign UP</Button>
+                &emsp;
+                <Button variant="success mt-1">Login</Button>
               </Form>
             </Navbar.Collapse>
           </Container>

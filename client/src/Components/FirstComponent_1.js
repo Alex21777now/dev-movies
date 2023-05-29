@@ -126,7 +126,7 @@ console.log(this.state);
     //const { addSlide, removeSlide, slideData, setSwiperInst } = this.props;
     return (
       <>
-      <h4>Choose fresh ideas to do</h4>
+      {/*<h4>Choose fresh ideas to do</h4>*/}
 {/*      <p>&nbsp;</p>  */}
       <div>
 

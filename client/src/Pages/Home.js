@@ -6,7 +6,7 @@ export default class Home extends Component {
         <div>
           <div>
                             <p></p>
-                            <strong>ПРИЛОЖУХА С ПРЕКРАСНЫМИ ИДЕЯМИ</strong>
+                            <strong>ОБИРАЙ УЛЮБЛЕНІ ФІЛЬМИ</strong>
                             <p>&nbsp;</p>
                             
           </div>

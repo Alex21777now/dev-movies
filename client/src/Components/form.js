@@ -1,6 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
-
+import {
+  Navbar,
+  Nav,
+  FormControl,
+  Container,
+  Button
+} from "react-bootstrap";
 
 const Styles = styled.div`
   /*padding: 3rem;*/
@@ -34,11 +40,23 @@ const Form = props => (
            <button>Получить курс</button>
     </form>*/}
     {/*<button onClick={props.kursMethod1}>Вывести текущий курс всех валют</button>*/}
-    <button type="button" class="btn btn-primary">Store --- to DB to BackEND</button>
-    <button type="button" class="btn btn-outline-danger ms-1">PULL --- from DB from BackEND</button>
+    
+    {/*<button type="button" class="btn btn-primary">Store --- to DB to BackEND</button>*/}
+   {/* <button type="button" class="btn btn-outline-danger ms-1">PULL --- from DB from BackEND</button>*/}
   {/*<button type="button" class="btn btn-outline-success ms-2">Clear localStorage</button>*/}
+  <p></p>
+              <div> 
+                <FormControl
+                  type="text"
+                  placeholder="Search"
+                  className="mr-sm-2"
+                />&emsp;
+                <p></p>
+                <Button variant="outline-info mt-1">Search</Button>
+               
+              </div>   
 <Styles>
-    <button type="button" class="btn btn-outline-success btn-circle float-end"><i class="fas fa-map">Clear localStorage</i></button>
+    <button type="button" class="btn btn-outline-info btn-circle float-end"><i class="fas fa-map">This button is something</i></button>
 </Styles>
   </div>
 
