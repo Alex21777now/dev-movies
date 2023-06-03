@@ -3,6 +3,7 @@ import {
   Card
 
 } from "react-bootstrap";
+import { Button } from '@material-ui/core';
 import { useState } from "react";
 import Form from "./form";
 import KursVse from "./KursVse";
@@ -125,10 +126,11 @@ console.log(this.state);
   render() {
     //const { addSlide, removeSlide, slideData, setSwiperInst } = this.props;
     return (
-      <>
+    <div className="flex-container">
       {/*<h4>Choose fresh ideas to do</h4>*/}
 {/*      <p>&nbsp;</p>  */}
-      <div>
+<div className="flex-child magenta">
+      
 
 
       <Form kursMethod1={this.gettingKurs1}
@@ -199,9 +201,29 @@ console.log(this.state);
      {/*БЫВШЕЕ ВЫПОЛНЕНИЕ МЕТОДА ЗАГРУЗКОЙ КАРТИНКИ <img src="logo192.png" alt="" onLoad={this.gettingKurs1}></img>*/}
        <p>&nbsp;</p>
      <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-      </div>
+       
+</div>
+<div className="flex-child green">
+       
+             <div className="aa">Movie List -- 2<br/>
+                    <Button color="primary" variant="contained">
+                        Click Me
+                    </Button>
+             </div>
+             <div className="bb">Details Movie -- 3<br/>
+                    <Button color="primary" variant="contained">
+                        Click Me
+                    </Button>
+             </div>
+             <div className="cc">Favorites -- 4<br/>
+                    <Button color="primary" variant="contained">
+                        Click Me
+                    </Button>
 
-     </>
+             </div>
+       
+</div>
+    </div>
     );
   }
 }
