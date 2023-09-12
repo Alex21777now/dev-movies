@@ -44,7 +44,11 @@ function AddSlide() { return (
                    var rValue = array[rand];
                    return rValue;
                }
-               var myArray = ['secondary', 'success', 'warning', 'info', 'light', 'primary'];
+               var myArray = ['secondary', 'success', 'warning', 'info', 'light', 'primary', 'danger'];
+              
+              
+              
+              
 
 
  export default function KursVse(props) {
@@ -56,13 +60,13 @@ return (
   <div>
  
   <p>{ props.error }</p>
-  { props.key1 &&
+  { props.id1 &&             /* props.key1   */
     <div>
         <p>{<div><p>&nbsp;&nbsp;&nbsp;</p></div>}</p>
         <p>{
 
 
-             props.data1.map(dat1 => (
+             props.data1.results.map(dat1 => (
 
               /*   <Card
                     bg={RandArray(myArray)}
@@ -86,23 +90,27 @@ return (
                    </Card>   */
 
                 <Card
-                   bg={RandArray(myArray)}
-                   key={dat1.item.key}
+                //   bg={RandArray(myArray)}
+                   border={RandArray(myArray)}
+                   
+                
+
+                   key={dat1.id} //   key={dat1.item.key}  FOR TODO
                    text={'black'}
                    //text={Card.background === 'light' ? 'black' : 'black'}
-                   style={{ width: '18rem', display: 'inline-block', margin: '15px'}}
+                   style={{ width: '18rem', display: 'inline-block', margin: '15px', borderWidth: '3px'}}
                    className="mb-3"
                 //   onClick={() => console.log('ZHOPA 1')}
                 //    onClick={() => console.log('НАЖАТА НАЖАТА')}
 
-                    onClick={() => props.addSlide()}
+                  //  onClick={() => props.addSlide()}                  КЛІКАЄМО ПО КАРТОЧЦІ
 
 
                  >
                  <Card.Header>Header</Card.Header>
                    <Card.Body>
 
-                  <Card.Title>LINK: {dat1.item.link} Card Title </Card.Title>
+                {/*  <Card.Title>LINK: {dat1.item.link} Card Title </Card.Title>
                       <Card.Text>
                   <p>PRICE: <strong>{dat1.item.price}</strong></p>
                   <p>ACTIVITY: <strong>{dat1.item.activity}</strong></p>
@@ -110,8 +118,27 @@ return (
                   <p>PARTICIPANTS: <strong>{dat1.item.participants}</strong></p>
                   <p>ACCESSIBILITY: {dat1.item.accessibility}</p>
                   <p>    </p>
+                      </Card.Text> */}
+
+                  <Card.Title>ADULT: {dat1.adult} Card Title </Card.Title>
+                      <Card.Text>
+                  <p>BACKDROP_PATH: <strong>{dat1.backdrop_path}</strong></p>
+                  <p>GENRE_IDS: <strong>{dat1.genre_ids}</strong></p>
+                  <p>ID: {dat1.id}</p>
+                  <p>ORIGINaL_LANGUAGE: <strong>{dat1.original_language}</strong></p>
+                  <p>ORIGINAL TITLE: {dat1.original_title}</p>
+                  <p>OVERVIEW: <strong>{dat1.overview}</strong></p>
+                  <p>POPULARITY: <strong>{dat1.popularity}</strong></p>
+                  <p>POSTER_PATH: {dat1.poster_path}</p>
+                  <p>RELEASE_DATE: <strong>{dat1.release_date}</strong></p>
+                  <p>TITLE: {dat1.title}</p>
+                  <p>VIDEO: {dat1.video}</p>
+                  <p>VOTE_AVERAGE: <strong>{dat1.vote_average}</strong></p>
+                  <p>VOTE_COUNT: {dat1.vote_count}</p>
+                  <p>    </p>
                       </Card.Text>
-                    </Card.Body>
+
+                    </Card.Body> 
                   </Card>
 
               ))

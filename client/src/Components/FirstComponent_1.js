@@ -23,7 +23,7 @@ export default class FirstComponent_1 extends Component {
 
   }  */
 
-  state = {
+  /* state = {
       activity1: undefined,
       type1: undefined,
       participants1: undefined,
@@ -33,7 +33,7 @@ export default class FirstComponent_1 extends Component {
       accessibility1: undefined,
       data1: undefined,
       error: undefined
-    }
+    } */
 
 /*gettingKurs1 = async (e1) => {
     e1.preventDefault();
@@ -57,6 +57,23 @@ export default class FirstComponent_1 extends Component {
 
       console.log('KAKOGO FIGA NE RABOTAET METOD TUT')
 } */
+
+state = {
+  adult: undefined,
+  backdrop_path: undefined,
+  genre_ids: undefined,
+  id: undefined,
+  original_language: undefined,
+  original_title: undefined,
+  overview: undefined,
+  popularity: undefined,
+  poster_path: undefined,
+  release_date: undefined,
+  title: undefined,
+  video: undefined,
+  vote_average: undefined,
+  vote_count: undefined
+}
 
 async componentDidMount() {
 // when react first renders then it called componentDidMount()
@@ -95,7 +112,7 @@ this.setState({
 console.log(this.state); */
 
 
- let data1 = [];
+/* let data1 = [];
 for (let i = 0; i < 6; i++)
 {
   const api_url1 = await fetch(`http://www.boredapi.com/api/activity?json`);
@@ -117,9 +134,31 @@ this.setState({
  data1: data1,
  error: ""
 });
-console.log(this.state);
+console.log(this.state);  */
 
+const api_url1 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4e5548c37fdfda0975c70c0688c24955`);
+const data1 = await api_url1.json();
+console.log(data1);
 
+this.setState({
+  adult1: data1.results[4].adult,
+  backdrop_path1: data1.results[4].backdrop_path,
+  genre_ids1: data1.results[4].genre_ids,
+  id1: data1.results[4].id,
+  original_language1: data1.results[4].original_language,
+  original_title1: data1.results[4].original_title,
+  overview1: data1.results[4].overview,
+  popularity1: data1.results[4].popularity,
+  poster_path1: data1.results[4].poster_path,
+  release_date1: data1.results[4].release_date,
+  title1: data1.results[4].title,
+  video1: data1.results[4].video,
+  vote_average1: data1.results[4].vote_average,
+  vote_count1: data1.results[4].vote_count,
+  data1: data1,
+  error: ""
+});
+console.log(this.state);  
 
 }
 
@@ -185,7 +224,7 @@ console.log(this.state);
          slideData={slideData}
          setSwiperInst={setSwiperInst} */
 
-         activity1={this.state.activity1}
+        /* activity1={this.state.activity1}
          type1={this.state.type1}
          participants1={this.state.participants1}
          price1={this.state.price1}
@@ -193,14 +232,31 @@ console.log(this.state);
          key1={this.state.key1}
          accessibility1={this.state.accessibility1}
          error={this.state.error}
-            data1={this.state.data1}
+            data1={this.state.data1}   */
+
+         adult1={this.state.adult1}
+         backdrop_path1={this.state.backdrop_path1}
+         genre_ids1={this.state.genre_ids1}
+         id1={this.state.id1}
+         original_language1={this.state.original_language1}
+         original_title1={this.state.original_title1}
+         overview1={this.state.overview1}
+         popularity1={this.state.popularity1}
+         poster_path1={this.state.poster_path1}
+         release_date1={this.state.release_date1}
+         title1={this.state.title1}
+         video1={this.state.video1}
+         vote_average1={this.state.vote_average1}
+         vote_count1={this.state.vote_count1}
+         error={this.state.error}
+         data1={this.state.data1} 
 
    />
  }
      </>
      {/*БЫВШЕЕ ВЫПОЛНЕНИЕ МЕТОДА ЗАГРУЗКОЙ КАРТИНКИ <img src="logo192.png" alt="" onLoad={this.gettingKurs1}></img>*/}
        <p>&nbsp;</p>
-     <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+    {/* <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>*/}
        
 </div>
 <div className="flex-child green">
