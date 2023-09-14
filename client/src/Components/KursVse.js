@@ -6,6 +6,7 @@ import {
   Card
 
 } from "react-bootstrap";
+import './HeartButton.css';
 //import IdeasInMyList_SLIDE_2 from './IdeasInMyList_SLIDE_2';
 //import {testFunction} from './IdeasInMyList_SLIDE_2'
 //import {addSlide} from './IdeasInMyList_SLIDE_2'
@@ -39,6 +40,9 @@ function AddSlide() { return (
                Data11();
                const data1 = Array(Data11());
                console.log(data1);                    */
+
+
+
                function RandArray(array){
                    var rand = Math.random()*array.length | 0;
                    var rValue = array[rand];
@@ -46,8 +50,7 @@ function AddSlide() { return (
                }
                var myArray = ['secondary', 'success', 'warning', 'info', 'light', 'primary', 'danger'];
               
-              
-              
+         
               
 
 
@@ -55,6 +58,16 @@ function AddSlide() { return (
 
 
 //const handleClick = useCallback(()=>AddSlide(), []);
+
+const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
 return (
   <div>
@@ -90,13 +103,14 @@ return (
                    </Card>   */
 
                 <Card
+
                 //   bg={RandArray(myArray)}
                    border={RandArray(myArray)}
-                   
+                   bg={'black'}
                 
 
                    key={dat1.id} //   key={dat1.item.key}  FOR TODO
-                   text={'black'}
+                   text={'gray'}
                    //text={Card.background === 'light' ? 'black' : 'black'}
                    style={{ width: '18rem', display: 'inline-block', margin: '15px', borderWidth: '3px'}}
                    className="mb-3"
@@ -104,48 +118,130 @@ return (
                 //    onClick={() => console.log('НАЖАТА НАЖАТА')}
 
                   //  onClick={() => props.addSlide()}                  КЛІКАЄМО ПО КАРТОЧЦІ
-
+                  
 
                  >
-                 <Card.Header>Header</Card.Header>
-                   <Card.Body>
 
-                {/*  <Card.Title>LINK: {dat1.item.link} Card Title </Card.Title>
-                      <Card.Text>
-                  <p>PRICE: <strong>{dat1.item.price}</strong></p>
-                  <p>ACTIVITY: <strong>{dat1.item.activity}</strong></p>
-                  <p>TYPE: {dat1.item.type}</p>
-                  <p>PARTICIPANTS: <strong>{dat1.item.participants}</strong></p>
-                  <p>ACCESSIBILITY: {dat1.item.accessibility}</p>
-                  <p>    </p>
-                      </Card.Text> */}
+<Card.Header style={{ color: 'white'}}>The Movie</Card.Header>
+{isHovered ? (
+        <Card.Body>
+          <Card.Title>"{dat1.title}"</Card.Title>
+          {/*<Card.Text>This content is displayed when hovering.</Card.Text>*/}
+          <Card.Text><p>OVERVIEW: <strong>{dat1.overview}</strong></p></Card.Text>
+          <img
+src={`https://image.tmdb.org/t/p/w300${dat1.poster_path}`}
+alt="Movie Poster"
+style={{
+margin: '2px 2px 2px 2px',
+width: '100%',    // Set the width of the image to 100% of the container
+height: '100%',   // Set the height of the image to 100% of the container
+objectFit: 'cover' // Use object-fit to cover the container
+}}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+/>
+        </Card.Body>
+      ) : (
+<Card.Body>
 
-                  <Card.Title>ADULT: {dat1.adult} Card Title </Card.Title>
-                      <Card.Text>
-                  <p>BACKDROP_PATH: <strong>{dat1.backdrop_path}</strong></p>
-                  <p>GENRE_IDS: <strong>{dat1.genre_ids}</strong></p>
-                  <p>ID: {dat1.id}</p>
-                  <p>ORIGINaL_LANGUAGE: <strong>{dat1.original_language}</strong></p>
-                  <p>ORIGINAL TITLE: {dat1.original_title}</p>
-                  <p>OVERVIEW: <strong>{dat1.overview}</strong></p>
-                  <p>POPULARITY: <strong>{dat1.popularity}</strong></p>
-                  <p>POSTER_PATH: {dat1.poster_path}</p>
-                  <p>RELEASE_DATE: <strong>{dat1.release_date}</strong></p>
-                  <p>TITLE: {dat1.title}</p>
-                  <p>VIDEO: {dat1.video}</p>
-                  <p>VOTE_AVERAGE: <strong>{dat1.vote_average}</strong></p>
-                  <p>VOTE_COUNT: {dat1.vote_count}</p>
-                  <p>    </p>
-                      </Card.Text>
+{/*  <Card.Title>LINK: {dat1.item.link} Card Title </Card.Title>
+   <Card.Text>
+<p>PRICE: <strong>{dat1.item.price}</strong></p>
+<p>ACTIVITY: <strong>{dat1.item.activity}</strong></p>
+<p>TYPE: {dat1.item.type}</p>
+<p>PARTICIPANTS: <strong>{dat1.item.participants}</strong></p>
+<p>ACCESSIBILITY: {dat1.item.accessibility}</p>
+<p>    </p>
+   </Card.Text> */}
+<div>
 
-                    </Card.Body> 
-                  </Card>
+<img
+src={`https://image.tmdb.org/t/p/w300${dat1.poster_path}`}
+alt="Movie Poster"
+style={{
+margin: '2px 2px 2px 2px',
+width: '100%',    // Set the width of the image to 100% of the container
+height: '100%',   // Set the height of the image to 100% of the container
+objectFit: 'cover' // Use object-fit to cover the container
+}}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+/>
+
+</div>
+
+
+{/*<Card.Title>ADULT: {dat1.adult} Card Title </Card.Title>*/}
+   <Card.Text>
+   <div style={{ display: 'inline-block',
+                 
+                 width: '100%', // Adjust the width as needed
+                 padding: '10px', // Adjust the padding as needed
+                 border: '1px #ccc',
+                 margin: '1px',
+                 backgroundColor: '#e3c684' }}>                     
+     <p>{dat1.title}  <strong>({dat1.release_date.substring(0, 4)})</strong>
+       <div style={{ color: '#e3c684',
+                     display: 'inline-block',
+                     width: '30%', // Adjust the width as needed
+                     padding: '10px', // Adjust the padding as needed
+                     /*border: '1px solid #ccc',*/
+                     margin: '5px',
+                     backgroundColor: '#444444',
+                     borderRadius: '10px',
+                     marginLeft: '25px'  }}>
+                     <strong>{dat1.vote_average}</strong>
+                     
+       </div>
+       <button className="heart-button">
+                         <span></span>to Favorite
+       </button>
+     </p>
+  
+   </div>
+{/*<p>BACKDROP_PATH: <strong>{dat1.backdrop_path}</strong></p>
+<p>GENRE_IDS: <strong>{dat1.genre_ids}</strong></p>
+<p>ID: {dat1.id}</p>
+<p>ORIGINaL_LANGUAGE: <strong>{dat1.original_language}</strong></p>
+<p>ORIGINAL TITLE: {dat1.original_title}</p>
+<p>OVERVIEW: <strong>{dat1.overview}</strong></p>
+<p>POPULARITY: <strong>{dat1.popularity}</strong></p>
+<p>POSTER_PATH: {dat1.poster_path}</p>
+<p>RELEASE_DATE: <strong>{dat1.release_date}</strong></p>
+<p>TITLE: {dat1.title}</p>
+<p>VIDEO: {dat1.video}</p>
+<p>VOTE_AVERAGE: <strong>{dat1.vote_average}</strong></p>
+<p>VOTE_COUNT: {dat1.vote_count}</p>
+<p>    </p>*/}
+   </Card.Text>
+
+ </Card.Body>
+      )}
+   </Card>
+                  
 
               ))
         }</p>
 
     </div>
   }
+{/*}  <Card
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ width: '300px' }}
+    >
+      {isHovered ? (
+        <Card.Body>
+          <Card.Title>Howered Content</Card.Title>
+          <Card.Text>This content is displayed when hovering.</Card.Text>
+        </Card.Body>
+      ) : (
+        <Card.Body>
+          <Card.Title>Normal Content</Card.Title>
+          <Card.Text>This content is displayed by default.</Card.Text>
+        </Card.Body>
+      )}
+    </Card> */}
   </div>
 );
 }

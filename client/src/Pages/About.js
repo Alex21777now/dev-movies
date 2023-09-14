@@ -15,6 +15,7 @@ export default class About extends Component {
                    height="541"
                    width="721"
                    alt="devochka2"
+                   style={{ marginBottom: '20px' }}
                />
           </div>
         </div>

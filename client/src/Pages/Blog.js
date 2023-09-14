@@ -15,6 +15,7 @@ export default class Blog extends Component {
                    height="541"
                    width="866"
                    alt="devochka4"
+                   style={{ marginBottom: '20px' }}
                />
           </div>
         </div>

@@ -15,6 +15,7 @@ export default class Contacts extends Component {
                    height="541"
                    width="823"
                    alt="devochka3"
+                   style={{ marginBottom: '20px' }}
                />
           </div>
         </div>

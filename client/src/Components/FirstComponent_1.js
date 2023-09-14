@@ -261,22 +261,22 @@ console.log(this.state);
 </div>
 <div className="flex-child green">
        
-             <div className="aa">Movie List -- 2<br/>
+             <div className="aa">Favorite Movies List<br/>
                     <Button color="primary" variant="contained">
                         Click Me
                     </Button>
              </div>
-             <div className="bb">Details Movie -- 3<br/>
+             <div className="bb">Details Movie<br/>
                     <Button color="primary" variant="contained">
                         Click Me
                     </Button>
              </div>
-             <div className="cc">Favorites -- 4<br/>
+             {/*<div className="cc">Favorites -- 4<br/>
                     <Button color="primary" variant="contained">
                         Click Me
                     </Button>
 
-             </div>
+             </div>*/}
        
 </div>
     </div>
