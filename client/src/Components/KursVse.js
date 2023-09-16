@@ -7,6 +7,14 @@ import {
 
 } from "react-bootstrap";
 import './HeartButton.css';
+
+import {
+  Navbar,
+  Nav,
+  FormControl,
+  Container,
+  Button
+} from "react-bootstrap";
 //import IdeasInMyList_SLIDE_2 from './IdeasInMyList_SLIDE_2';
 //import {testFunction} from './IdeasInMyList_SLIDE_2'
 //import {addSlide} from './IdeasInMyList_SLIDE_2'
@@ -59,6 +67,8 @@ function AddSlide() { return (
 
 //const handleClick = useCallback(()=>AddSlide(), []);
 
+const [search, setSearch] = useState('');
+
 const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -71,7 +81,38 @@ const [isHovered, setIsHovered] = useState(false);
 
 return (
   <div>
- 
+  
+  <div> 
+                <FormControl
+                  type="text"
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder='Search movies'
+                  className="mr-sm-2"
+                />&emsp;
+                <p></p>
+                <Button variant="outline-info mt-1">Search</Button>
+
+      <div>
+      {/*{props.data1.results.filter(dat1 => {
+                return search.toLowerCase() === ''
+                  ? dat1
+                  : dat1.title.toLowerCase().includes(search);
+              })
+              .map(dat1 => (
+                <div>
+                  <p>{dat1.title}</p>
+                  <p>{dat1.popularity}</p>
+                  <p>{dat1.vote_average}</p>
+                  <p>{dat1.original_language}</p>
+                </div>
+              ))} */}
+
+      
+      
+      </div>   
+               
+  </div> 
+
   <p>{ props.error }</p>
   { props.id1 &&             /* props.key1   */
     <div>

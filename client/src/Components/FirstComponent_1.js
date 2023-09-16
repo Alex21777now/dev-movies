@@ -5,7 +5,7 @@ import {
 } from "react-bootstrap";
 import { Button } from '@material-ui/core';
 import { useState } from "react";
-import Form from "./form";
+import Form from "./Form.js";
 import KursVse from "./KursVse";
 
 
@@ -73,6 +73,8 @@ state = {
   video: undefined,
   vote_average: undefined,
   vote_count: undefined
+  
+  
 }
 
 async componentDidMount() {
@@ -140,6 +142,7 @@ const api_url1 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_ke
 const data1 = await api_url1.json();
 console.log(data1);
 
+
 this.setState({
   adult1: data1.results[4].adult,
   backdrop_path1: data1.results[4].backdrop_path,
@@ -168,13 +171,33 @@ console.log(this.state);
     <div className="flex-container">
       {/*<h4>Choose fresh ideas to do</h4>*/}
 {/*      <p>&nbsp;</p>  */}
-<div className="flex-child magenta">
+          <div className="flex-child magenta">
       
+               
 
+          
 
       <Form kursMethod1={this.gettingKurs1}
 
-            data1={this.state.data1}
+          //  data1={this.state.data1}
+
+         adult1={this.state.adult1}
+         backdrop_path1={this.state.backdrop_path1}
+         genre_ids1={this.state.genre_ids1}
+         id1={this.state.id1}
+         original_language1={this.state.original_language1}
+         original_title1={this.state.original_title1}
+         overview1={this.state.overview1}
+         popularity1={this.state.popularity1}
+         poster_path1={this.state.poster_path1}
+         release_date1={this.state.release_date1}
+         title1={this.state.title1}
+         video1={this.state.video1}
+         vote_average1={this.state.vote_average1}
+         vote_count1={this.state.vote_count1}
+         error={this.state.error}
+         data1={this.state.data1}
+
        />
 
       <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import {
   Navbar,
@@ -7,6 +7,9 @@ import {
   Container,
   Button
 } from "react-bootstrap";
+
+
+
 
 const Styles = styled.div`
   /*padding: 3rem;*/
@@ -29,9 +32,13 @@ const Styles = styled.div`
 `
 /*const data11 = props.data1.map((dat1) => ({dat1}));*/
 
-const Form = props => (
+export default function Form(props) {
+// const Form = props => (
+ 
+//const [search, setSearch] = useState('');
 
-  <div>
+return (
+<div>
 
     {/*<form>
 
@@ -45,20 +52,42 @@ const Form = props => (
    {/* <button type="button" class="btn btn-outline-danger ms-1">PULL --- from DB from BackEND</button>*/}
   {/*<button type="button" class="btn btn-outline-success ms-2">Clear localStorage</button>*/}
   <p></p>
-              <div> 
+  {/*<div> 
                 <FormControl
                   type="text"
-                  placeholder="Search"
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder='Search movies'
                   className="mr-sm-2"
                 />&emsp;
                 <p></p>
                 <Button variant="outline-info mt-1">Search</Button>
-               
-              </div>   
-<Styles>
-    <button type="button" class="btn btn-outline-info btn-circle float-end"><i class="fas fa-map">This button is something</i></button>
-</Styles>
-  </div>
 
+      <div>
+      {props.data1.results.filter(dat1 => {
+                return search.toLowerCase() === ''
+                  ? dat1
+                  : dat1.title.toLowerCase().includes(search);
+              })
+              .map(dat1 => (
+                <div>
+                  <p>{dat1.title}</p>
+                  <p>{dat1.popularity}</p>
+                  <p>{dat1.vote_average}</p>
+                  <p>{dat1.original_language}</p>
+                </div>
+              ))}
+
+      
+      
+      </div>
+               
+  </div>*/}   
+  <Styles>
+    <button type="button" class="btn btn-outline-info btn-circle float-end"><i class="fas fa-map">This button is something</i></button>
+  </Styles>
+</div>
+
+// );
+// export default Form;
 );
-export default Form;
+            }
