@@ -22,7 +22,7 @@ export default class FirstComponent_1 extends Component {
     error: undefined
 
   }  */
-
+  
   /* state = {
       activity1: undefined,
       type1: undefined,
@@ -172,9 +172,7 @@ console.log(this.state);
       {/*<h4>Choose fresh ideas to do</h4>*/}
 {/*      <p>&nbsp;</p>  */}
           <div className="flex-child magenta">
-      
-               
-
+    
           
 
       <Form kursMethod1={this.gettingKurs1}

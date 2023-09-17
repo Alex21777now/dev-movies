@@ -82,7 +82,7 @@ const [isHovered, setIsHovered] = useState(false);
 return (
   <div>
   
-  <div> 
+  {/*<div> 
                 <FormControl
                   type="text"
                   onChange={(e) => setSearch(e.target.value)}
@@ -93,7 +93,7 @@ return (
                 <Button variant="outline-info mt-1">Search</Button>
 
       <div>
-      {/*{props.data1.results.filter(dat1 => {
+      {props.data1.results.filter(dat1 => {
                 return search.toLowerCase() === ''
                   ? dat1
                   : dat1.title.toLowerCase().includes(search);
@@ -105,22 +105,37 @@ return (
                   <p>{dat1.vote_average}</p>
                   <p>{dat1.original_language}</p>
                 </div>
-              ))} */}
+              ))}
 
       
       
       </div>   
                
-  </div> 
+  </div> */}
 
   <p>{ props.error }</p>
   { props.id1 &&             /* props.key1   */
     <div>
         <p>{<div><p>&nbsp;&nbsp;&nbsp;</p></div>}</p>
-        <p>{
+        <div> 
+                <FormControl
+                  type="text"
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder='Search movies'
+                  className="mr-sm-2"
+                />&emsp;
+                <p></p>
+                <Button variant="outline-info mt-1">Search</Button>
 
-
-             props.data1.results.map(dat1 => (
+      </div>
+        <p>{        
+             /*props.data1.results*/
+             props.data1.results.filter(dat1 => {
+              return search.toLowerCase() === ''
+                ? dat1
+                : dat1.title.toLowerCase().includes(search);
+            })
+             .map(dat1 => (
 
               /*   <Card
                     bg={RandArray(myArray)}
@@ -283,6 +298,9 @@ objectFit: 'cover' // Use object-fit to cover the container
         </Card.Body>
       )}
     </Card> */}
+
+
+
   </div>
 );
 }
