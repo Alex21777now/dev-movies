@@ -37,6 +37,13 @@ export default function Form(props) {
  
 //const [search, setSearch] = useState('');
 
+function scrollToTop () {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth', // Для плавной анимированной прокрутки
+  });
+};
+
 return (
 <div>
 
@@ -83,7 +90,7 @@ return (
                
   </div>*/}   
   <Styles>
-    <button type="button" class="btn btn-outline-info btn-circle float-end"><i class="fas fa-map">This button is something</i></button>
+    <button type="button" class="btn btn-outline-info btn-circle float-end" onClick={() => scrollToTop()}><i class="fas fa-map">GO UPWARD ^</i></button>
   </Styles>
 </div>
 

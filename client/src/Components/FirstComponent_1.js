@@ -284,12 +284,12 @@ console.log(this.state);
        
              <div className="aa">Favorite Movies List<br/>
                     <Button color="primary" variant="contained">
-                        Click Me
+                        CLEAR
                     </Button>
              </div>
              <div className="bb">Details Movie<br/>
                     <Button color="primary" variant="contained">
-                        Click Me
+                        CLEAR
                     </Button>
              </div>
              {/*<div className="cc">Favorites -- 4<br/>
