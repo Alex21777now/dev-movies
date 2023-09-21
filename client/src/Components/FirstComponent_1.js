@@ -141,23 +141,23 @@ console.log(this.state);  */
 const api_url1 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4e5548c37fdfda0975c70c0688c24955`);
 const data1 = await api_url1.json();
 console.log(data1);
-
+const randomInt = Math.floor(Math.random() * 19);
 
 this.setState({
-  adult1: data1.results[3].adult,
-  backdrop_path1: data1.results[3].backdrop_path,
-  genre_ids1: data1.results[3].genre_ids,
-  id1: data1.results[3].id,
-  original_language1: data1.results[3].original_language,
-  original_title1: data1.results[3].original_title,
-  overview1: data1.results[3].overview,
-  popularity1: data1.results[3].popularity,
-  poster_path1: data1.results[3].poster_path,
-  release_date1: data1.results[3].release_date,
-  title1: data1.results[3].title,
-  video1: data1.results[3].video,
-  vote_average1: data1.results[3].vote_average,
-  vote_count1: data1.results[3].vote_count,
+  adult1: data1.results[randomInt].adult,
+  backdrop_path1: data1.results[randomInt].backdrop_path,
+  genre_ids1: data1.results[randomInt].genre_ids,
+  id1: data1.results[randomInt].id,
+  original_language1: data1.results[randomInt].original_language,
+  original_title1: data1.results[randomInt].original_title,
+  overview1: data1.results[randomInt].overview,
+  popularity1: data1.results[randomInt].popularity,
+  poster_path1: data1.results[randomInt].poster_path,
+  release_date1: data1.results[randomInt].release_date,
+  title1: data1.results[randomInt].title,
+  video1: data1.results[randomInt].video,
+  vote_average1: data1.results[randomInt].vote_average,
+  vote_count1: data1.results[randomInt].vote_count,
   data1: data1,
   error: ""
 });
@@ -167,6 +167,7 @@ console.log(this.state);
 
   render() {
     //const { addSlide, removeSlide, slideData, setSwiperInst } = this.props;
+  
     return (
     <div className="flex-container">
       {/*<h4>Choose fresh ideas to do</h4>*/}
@@ -282,12 +283,8 @@ console.log(this.state);
 </div>
 <div className="flex-child green">
        
-             <div className="aa">Favorite Movies List<br/>
-                    <Button color="primary" variant="contained">
-                        CLEAR
-                    </Button>
-             </div>
-             <div className="bb" style={{ background: '#023607' }}>Details Movie<br/>
+             
+             <div className="bb" style={{ background: '#023607' }}>Random Movie<br/>
              <img
      src={`https://image.tmdb.org/t/p/w500${this.state.backdrop_path1}`}
      alt="Movie Background"
@@ -366,9 +363,9 @@ className="mb-3"
                                       <strong>{this.state.vote_average1}</strong>
 
                         </div>
-                           <button className="heart-button">
+                           {/*<button className="heart-button">
                               <span></span>to Favorite
-                           </button>
+                           </button>*/}
                   </p>
 
             </div>
@@ -378,9 +375,9 @@ className="mb-3"
 </Card.Body>
 
 </Card>
-                    <Button color="primary" variant="contained">
+                    {/*<Button color="primary" variant="contained">
                         CLEAR
-                    </Button>
+                    </Button>*/}
              </div>
              {/*<div className="cc">Favorites -- 4<br/>
                     <Button color="primary" variant="contained">
@@ -388,6 +385,102 @@ className="mb-3"
                     </Button>
 
              </div>*/}
+
+<div className="bb" style={{ background: 'darkgrey' }}>The Movie of The Day<br/>
+             <img
+     src={`https://image.tmdb.org/t/p/w500${this.state.backdrop_path1}`}
+     alt="Movie Background"
+     style={{
+      margin: '2px 2px 2px 2px',
+      width: '99%',    // Set the width of the image to 100% of the container
+      height: '100%',   // Set the height of the image to 100% of the container
+      objectFit: 'cover' // Use object-fit to cover the container
+             }}
+        />
+             <p></p>
+             <p><strong>{this.state.original_title1}</strong></p>
+             <div style={{ margin: '1px 10px 5px 10px'}}>{this.state.overview1}</div><br/>
+             <p><strong>Original Release:        </strong>{this.state.release_date1}</p>
+             <p><strong>Vote Average:        </strong>{this.state.vote_average1}</p>
+             <p><strong>Vote count:        </strong>{this.state.vote_count1}</p>
+             <p><strong>Popularity:        </strong>{this.state.popularity1}</p>
+             <p><strong>Original Language:        </strong>{this.state.original_language1}</p>
+            <Card
+
+//   bg={RandArray(myArray)}
+//   border={RandArray(myArray)}
+bg={'black'}
+
+
+key={this.state.id1} //   key={dat1.item.key}  FOR TODO
+text={'gray'}
+//text={Card.background === 'light' ? 'black' : 'black'}
+style={{ width: '18rem', display: 'inline-block', margin: '15px', borderWidth: '3px'}}
+className="mb-3"
+//   onClick={() => console.log('ZHOPA 1')}
+//    onClick={() => console.log('НАЖАТА НАЖАТА')}
+
+//  onClick={() => props.addSlide()}                  КЛІКАЄМО ПО КАРТОЧЦІ
+>
+
+<Card.Header style={{ color: 'white'}}>The Movie</Card.Header>
+
+<Card.Body>
+
+
+    <div>
+
+       <img
+     src={`https://image.tmdb.org/t/p/w300${this.state.poster_path1}`}
+     alt="Movie Poster"
+     style={{
+     margin: '2px 2px 2px 2px',
+     width: '100%',    // Set the width of the image to 100% of the container
+     height: '100%',   // Set the height of the image to 100% of the container
+     objectFit: 'cover' // Use object-fit to cover the container
+            }}
+
+        />
+
+    </div>
+
+        <Card.Text>
+            <div style={{ display: 'inline-block',
+
+             width: '100%', // Adjust the width as needed
+             padding: '10px', // Adjust the padding as needed
+             border: '1px #ccc',
+             margin: '1px',
+             backgroundColor: '#e3c684' }}>                     
+                             <p>{this.state.title1}  <strong>({this.state.release_date1})</strong>
+                       <div style={{ color: '#e3c684',
+                                  display: 'inline-block',
+                                  width: '30%', // Adjust the width as needed
+                                  padding: '10px', // Adjust the padding as needed
+                                  /*border: '1px solid #ccc',*/
+                                  margin: '5px',
+                                  backgroundColor: '#444444',
+                                  borderRadius: '10px',
+                                  marginLeft: '25px'  }}>
+                                      <strong>{this.state.vote_average1}</strong>
+
+                        </div>
+                           {/*<button className="heart-button">
+                              <span></span>to Favorite
+                           </button>*/}
+                  </p>
+
+            </div>
+
+        </Card.Text>
+
+</Card.Body>
+
+</Card>
+                    {/*<Button color="primary" variant="contained">
+                        CLEAR
+                    </Button>*/}
+             </div>          
        
 </div>
     </div>

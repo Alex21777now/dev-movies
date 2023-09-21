@@ -74,11 +74,27 @@ function AddSlide() { return (
                }
                var myArray = ['secondary', 'success', 'warning', 'info', 'light', 'primary', 'danger'];
               
-         
+               const generalMovieList = [
+                {
+                  id: 1,
+                  title: 'Movie 1',
+                  description: 'This is the description of Movie 1.',
+                },
+                {
+                  id: 2,
+                  title: 'Movie 2',
+                  description: 'This is the description of Movie 2.',
+                },
+                {
+                  id: 3,
+                  title: 'Movie 3',
+                  description: 'This is the description of Movie 3.',
+                },
+              ];  
               
 
 
- export default function KursVse(props) {
+ function KursVse(props) {
 
 
 //const handleClick = useCallback(()=>AddSlide(), []);
@@ -106,6 +122,26 @@ const [isHovered, setIsHovered] = useState(false);
 
   const handleClose = () => {
     setSelectedMovie(null);
+  };
+
+  console.log(selectedMovie);
+  
+
+
+
+
+  const [movies, setMovies] = useState(generalMovieList);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+  const handleAddToFavorite = (dat1) => {
+    if (!favoriteMovies.some((favMovie) => favMovie.id === dat1.id)) {
+      setFavoriteMovies([...favoriteMovies, dat1]);
+    }
+  };
+
+  const handleRemoveFromFavorite = (dat1) => {
+    const updatedFavorites = favoriteMovies.filter((favMovie) => favMovie.id !== dat1.id);
+    setFavoriteMovies(updatedFavorites);
   };
 
 
@@ -279,7 +315,7 @@ objectFit: 'cover' // Use object-fit to cover the container
                      <strong>{dat1.vote_average}</strong>
                      
        </div>
-       <button className="heart-button">
+       <button className="heart-button" onClick={() => handleAddToFavorite(dat1)}>
                          <span></span>to Favorite
        </button>
       
@@ -331,18 +367,7 @@ objectFit: 'cover' // Use object-fit to cover the container
     </Card> */}
 
 <div className="App">
-      <h1>Movie List</h1>
-      <div className="card-container">
-        {movieList.map((movie) => (
-          <Card key={movie.id} style={{ width: '18rem' }} onClick={() => handleCardClick(movie)}>
-            <Card.Body>
-              <Card.Title>{movie.title}</Card.Title>
-              <Card.Text>{movie.description}</Card.Text>
-              {/*<Button onClick={() => handleCardClick(movie)}>Details</Button>*/}
-            </Card.Body>
-          </Card>
-        ))}
-      </div>
+  
 
       <Modal show={selectedMovie !== null} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -382,6 +407,36 @@ objectFit: 'cover' // Use object-fit to cover the container
       </Modal>
     </div>
 
+
+    <div className="App">
+      
+
+      <h2>Favorite Movies List</h2>
+      <div className="card-container">
+        {favoriteMovies.map((movie) => (
+          <Card key={movie.id} style={{ width: '18rem' , color: 'black'}}>
+            <Card.Body>
+            <img
+src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+alt="Movie Poster"
+style={{
+margin: '2px 2px 2px 2px',
+width: '100%',    // Set the width of the image to 100% of the container
+height: '100%',   // Set the height of the image to 100% of the container
+objectFit: 'cover' // Use object-fit to cover the container
+}}                
+/>
+              <Card.Title>{movie.title}</Card.Title>
+              <Card.Text>{movie.description}</Card.Text>
+              <Button onClick={() => handleRemoveFromFavorite(movie)}>Remove from Favorites</Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+    </div>
+
   </div>
 );
 }
+
+export default KursVse;
