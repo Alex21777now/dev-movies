@@ -144,20 +144,20 @@ console.log(data1);
 
 
 this.setState({
-  adult1: data1.results[4].adult,
-  backdrop_path1: data1.results[4].backdrop_path,
-  genre_ids1: data1.results[4].genre_ids,
-  id1: data1.results[4].id,
-  original_language1: data1.results[4].original_language,
-  original_title1: data1.results[4].original_title,
-  overview1: data1.results[4].overview,
-  popularity1: data1.results[4].popularity,
-  poster_path1: data1.results[4].poster_path,
-  release_date1: data1.results[4].release_date,
-  title1: data1.results[4].title,
-  video1: data1.results[4].video,
-  vote_average1: data1.results[4].vote_average,
-  vote_count1: data1.results[4].vote_count,
+  adult1: data1.results[3].adult,
+  backdrop_path1: data1.results[3].backdrop_path,
+  genre_ids1: data1.results[3].genre_ids,
+  id1: data1.results[3].id,
+  original_language1: data1.results[3].original_language,
+  original_title1: data1.results[3].original_title,
+  overview1: data1.results[3].overview,
+  popularity1: data1.results[3].popularity,
+  poster_path1: data1.results[3].poster_path,
+  release_date1: data1.results[3].release_date,
+  title1: data1.results[3].title,
+  video1: data1.results[3].video,
+  vote_average1: data1.results[3].vote_average,
+  vote_count1: data1.results[3].vote_count,
   data1: data1,
   error: ""
 });
@@ -287,7 +287,97 @@ console.log(this.state);
                         CLEAR
                     </Button>
              </div>
-             <div className="bb">Details Movie<br/>
+             <div className="bb" style={{ background: '#023607' }}>Details Movie<br/>
+             <img
+     src={`https://image.tmdb.org/t/p/w500${this.state.backdrop_path1}`}
+     alt="Movie Background"
+     style={{
+      margin: '2px 2px 2px 2px',
+      width: '99%',    // Set the width of the image to 100% of the container
+      height: '100%',   // Set the height of the image to 100% of the container
+      objectFit: 'cover' // Use object-fit to cover the container
+             }}
+        />
+             <p></p>
+             <p><strong>{this.state.original_title1}</strong></p>
+             <div style={{ margin: '1px 10px 5px 10px'}}>{this.state.overview1}</div><br/>
+             <p><strong>Original Release:        </strong>{this.state.release_date1}</p>
+             <p><strong>Vote Average:        </strong>{this.state.vote_average1}</p>
+             <p><strong>Vote count:        </strong>{this.state.vote_count1}</p>
+             <p><strong>Popularity:        </strong>{this.state.popularity1}</p>
+             <p><strong>Original Language:        </strong>{this.state.original_language1}</p>
+            <Card
+
+//   bg={RandArray(myArray)}
+//   border={RandArray(myArray)}
+bg={'black'}
+
+
+key={this.state.id1} //   key={dat1.item.key}  FOR TODO
+text={'gray'}
+//text={Card.background === 'light' ? 'black' : 'black'}
+style={{ width: '18rem', display: 'inline-block', margin: '15px', borderWidth: '3px'}}
+className="mb-3"
+//   onClick={() => console.log('ZHOPA 1')}
+//    onClick={() => console.log('НАЖАТА НАЖАТА')}
+
+//  onClick={() => props.addSlide()}                  КЛІКАЄМО ПО КАРТОЧЦІ
+>
+
+<Card.Header style={{ color: 'white'}}>The Movie</Card.Header>
+
+<Card.Body>
+
+
+    <div>
+
+       <img
+     src={`https://image.tmdb.org/t/p/w300${this.state.poster_path1}`}
+     alt="Movie Poster"
+     style={{
+     margin: '2px 2px 2px 2px',
+     width: '100%',    // Set the width of the image to 100% of the container
+     height: '100%',   // Set the height of the image to 100% of the container
+     objectFit: 'cover' // Use object-fit to cover the container
+            }}
+
+        />
+
+    </div>
+
+        <Card.Text>
+            <div style={{ display: 'inline-block',
+
+             width: '100%', // Adjust the width as needed
+             padding: '10px', // Adjust the padding as needed
+             border: '1px #ccc',
+             margin: '1px',
+             backgroundColor: '#e3c684' }}>                     
+                             <p>{this.state.title1}  <strong>({this.state.release_date1})</strong>
+                       <div style={{ color: '#e3c684',
+                                  display: 'inline-block',
+                                  width: '30%', // Adjust the width as needed
+                                  padding: '10px', // Adjust the padding as needed
+                                  /*border: '1px solid #ccc',*/
+                                  margin: '5px',
+                                  backgroundColor: '#444444',
+                                  borderRadius: '10px',
+                                  marginLeft: '25px'  }}>
+                                      <strong>{this.state.vote_average1}</strong>
+
+                        </div>
+                           <button className="heart-button">
+                              <span></span>to Favorite
+                           </button>
+                  </p>
+
+            </div>
+
+        </Card.Text>
+
+</Card.Body>
+
+</Card>
                     <Button color="primary" variant="contained">
                         CLEAR
                     </Button>
@@ -302,5 +392,5 @@ console.log(this.state);
 </div>
     </div>
     );
-  }
-}
+            }
+          }

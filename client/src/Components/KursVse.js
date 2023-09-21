@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { useState } from "react";
 import PropTypes from 'prop-types'
 import {
-  Card
-
+  Card,
+  Modal
 } from "react-bootstrap";
 import './HeartButton.css';
 
@@ -49,7 +49,23 @@ function AddSlide() { return (
                const data1 = Array(Data11());
                console.log(data1);                    */
 
-
+               const movieList = [
+                {
+                  id: 1,
+                  title: 'Movie 1',
+                  description: 'This is the description of Movie 1.',
+                },
+                {
+                  id: 2,
+                  title: 'Movie 2',
+                  description: 'This is the description of Movie 2.',
+                },
+                {
+                  id: 3,
+                  title: 'Movie 3',
+                  description: 'This is the description of Movie 3.',
+                },
+              ];
 
                function RandArray(array){
                    var rand = Math.random()*array.length | 0;
@@ -78,6 +94,20 @@ const [isHovered, setIsHovered] = useState(false);
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+
+
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const handleCardClick = (dat1) => {
+    setSelectedMovie(dat1);
+  };
+
+  const handleClose = () => {
+    setSelectedMovie(null);
+  };
+
 
 return (
   <div>
@@ -192,7 +222,7 @@ margin: '2px 2px 2px 2px',
 width: '100%',    // Set the width of the image to 100% of the container
 height: '100%',   // Set the height of the image to 100% of the container
 objectFit: 'cover' // Use object-fit to cover the container
-}}
+}}                onClick={() => handleCardClick(dat1)}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
 />
@@ -219,7 +249,7 @@ margin: '2px 2px 2px 2px',
 width: '100%',    // Set the width of the image to 100% of the container
 height: '100%',   // Set the height of the image to 100% of the container
 objectFit: 'cover' // Use object-fit to cover the container
-}}
+}}                onClick={() => handleCardClick(dat1)}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
 />
@@ -252,6 +282,7 @@ objectFit: 'cover' // Use object-fit to cover the container
        <button className="heart-button">
                          <span></span>to Favorite
        </button>
+      
      </p>
   
    </div>
@@ -299,7 +330,57 @@ objectFit: 'cover' // Use object-fit to cover the container
       )}
     </Card> */}
 
+<div className="App">
+      <h1>Movie List</h1>
+      <div className="card-container">
+        {movieList.map((movie) => (
+          <Card key={movie.id} style={{ width: '18rem' }} onClick={() => handleCardClick(movie)}>
+            <Card.Body>
+              <Card.Title>{movie.title}</Card.Title>
+              <Card.Text>{movie.description}</Card.Text>
+              {/*<Button onClick={() => handleCardClick(movie)}>Details</Button>*/}
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
 
+      <Modal show={selectedMovie !== null} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Movie Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ background: '#023607', color: 'white' }} >
+          {selectedMovie && (
+            <>
+              <h2>{selectedMovie.title}</h2>
+              <img
+     src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
+     alt="Movie Background"
+     style={{
+      margin: '2px 2px 2px 2px',
+      width: '99%',    // Set the width of the image to 100% of the container
+      height: '100%',   // Set the height of the image to 100% of the container
+      objectFit: 'cover' // Use object-fit to cover the container
+             }}
+        />
+              {/*<p>{selectedMovie.description}</p>*/}
+              {/* Add more details here */}
+              <div style={{ margin: '1px 10px 5px 10px'}}>{selectedMovie.overview}</div><br/>
+              <p><strong>Original Release:        </strong>{selectedMovie.release_date}</p>
+              <p><strong>Vote Average:        </strong>{selectedMovie.vote_average}</p>
+              <p><strong>Vote count:        </strong>{selectedMovie.vote_count}</p>
+              <p><strong>Popularity:        </strong>{selectedMovie.popularity}</p>
+              <p><strong>Original Language:        </strong>{selectedMovie.original_language}</p>
+
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
 
   </div>
 );
