@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Navbar,
   Nav,
@@ -17,6 +19,10 @@ import About from '../Pages/About';
 import Contacts from '../Pages/Contacts';
 import Blog from '../Pages/Blog';
 
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const REGISTER_URL = '/register';
+
 //export default class Header extends Component {
 function Header(props) {  
 
@@ -32,6 +38,82 @@ function Header(props) {
 
   console.log(selectedMovie);
  // render() {
+
+ // REGISTER
+
+ const userRef = useRef();
+ const errRef = useRef();
+
+ const [user, setUser] = useState('');
+ const [validName, setValidName] = useState(false);
+ const [userFocus, setUserFocus] = useState(false);
+
+ const [pwd, setPwd] = useState('');
+ const [validPwd, setValidPwd] = useState(false);
+ const [pwdFocus, setPwdFocus] = useState(false);
+
+ const [matchPwd, setMatchPwd] = useState('');
+ const [validMatch, setValidMatch] = useState(false);
+ const [matchFocus, setMatchFocus] = useState(false);
+
+ const [errMsg, setErrMsg] = useState('');
+ const [success, setSuccess] = useState(false);
+
+//useEffect(() => {
+//userRef.current.focus();
+//}, [])
+
+useEffect(() => {
+  setValidName(USER_REGEX.test(user));
+}, [user])
+
+useEffect(() => {
+  setValidPwd(PWD_REGEX.test(pwd));
+  setValidMatch(pwd === matchPwd);
+}, [pwd, matchPwd])
+
+useEffect(() => {
+  setErrMsg('');
+}, [user, pwd, matchPwd])
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  // if button enabled with JS hack
+  const v1 = USER_REGEX.test(user);
+  const v2 = PWD_REGEX.test(pwd);
+  if (!v1 || !v2) {
+      setErrMsg("Invalid Entry");
+      return;
+  }
+  try {
+      const response = await axios.post(REGISTER_URL,
+          JSON.stringify({ user, pwd }),
+          {
+              headers: { 'Content-Type': 'application/json' },
+              withCredentials: true
+          }
+      );
+      console.log(response?.data);
+      console.log(response?.accessToken);
+      console.log(JSON.stringify(response))
+      setSuccess(true);
+      //clear state and controlled inputs
+      //need value attrib on inputs for this
+      setUser('');
+      setPwd('');
+      setMatchPwd('');
+  } catch (err) {
+      if (!err?.response) {
+          setErrMsg('No Server Response');
+      } else if (err.response?.status === 409) {
+          setErrMsg('Username Taken');
+      } else {
+          setErrMsg('Registration Failed')
+      }
+      errRef.current.focus();
+  }
+}
+
     return (
       <>
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
@@ -60,9 +142,9 @@ function Header(props) {
                   className="mr-sm-2"
                 />&emsp;
                 <Button variant="outline-info mt-1">Search</Button>*/}
-                <Button variant="secondary mt-1" onClick={() => handleCardClick()}>Register (SignUP)</Button>
+                <Button variant="primary mt-1" onClick={() => handleCardClick()}>Register | SignUP</Button>
                 &emsp;
-                <Button variant="success mt-1" onClick={() => handleCardClick()}>Login (SignIn)</Button>
+                <Button variant="dark mt-1" onClick={() => handleCardClick()}>Login | SignIN</Button>
               </Form>
             </Navbar.Collapse>
           </Container>
@@ -87,31 +169,107 @@ function Header(props) {
 
       <Modal show={selectedMovie !== null} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Movie Details</Modal.Title>
+          <Modal.Title>New User Registration</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ background: '#023607', color: 'white' }} >
+        <Modal.Body style={{ background: '#125699',
+                             color: 'white' }} >
           {/*selectedMovie && */(
             <>
-              <h2>НАЗВАНИЕ</h2>
-              <img
-     src={`https://media.istockphoto.com/id/1294339577/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B0%D1%8F-%D0%BA%D1%80%D0%B0%D1%81%D0%B8%D0%B2%D0%B0%D1%8F-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0.jpg?s=612x612&w=0&k=20&c=XycaFhXyg26q3KmeOFzBtXon3W1emadZfblkqi6wRW4=`}
-     alt="Movie Background"
-     style={{
-      margin: '2px 2px 2px 2px',
-      width: '99%',    // Set the width of the image to 100% of the container
-      height: '100%',   // Set the height of the image to 100% of the container
-      objectFit: 'cover' // Use object-fit to cover the container
-             }}
-        />
-              {/*<p>{selectedMovie.description}</p>*/}
-              {/* Add more details here */}
-              <div style={{ margin: '1px 10px 5px 10px'}}>дан1</div><br/>
-              <p><strong>Original Release:        </strong>дан2</p>
-              <p><strong>Vote Average:        </strong>дан3</p>
-              <p><strong>Vote count:        </strong>дан4</p>
-              <p><strong>Popularity:        </strong>дан5</p>
-              <p><strong>Original Language:        </strong>дан6</p>
+           {success ? (
+                <section>
+                    <h1>Success!</h1>
+                    <p>
+                        <a href="#">Sign In</a>
+                    </p>
+                </section>
+            ) : (
+                <section>
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <h1>Register</h1>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="username">
+                            Username:
+                            <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                            required
+                            aria-invalid={validName ? "false" : "true"}
+                            aria-describedby="uidnote"
+                            onFocus={() => setUserFocus(true)}
+                            onBlur={() => setUserFocus(false)}
+                        />
+                        <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            4 to 24 characters.<br />
+                            Must begin with a letter.<br />
+                            Letters, numbers, underscores, hyphens allowed.
+                        </p>
 
+
+                        <label htmlFor="password">
+                            Password:
+                            <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            required
+                            aria-invalid={validPwd ? "false" : "true"}
+                            aria-describedby="pwdnote"
+                            onFocus={() => setPwdFocus(true)}
+                            onBlur={() => setPwdFocus(false)}
+                        />
+                        <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            8 to 24 characters.<br />
+                            Must include uppercase and lowercase letters, a number and a special character.<br />
+                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                        </p>
+
+
+                        <label htmlFor="confirm_pwd">
+                            Confirm Password:
+                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="password"
+                            id="confirm_pwd"
+                            onChange={(e) => setMatchPwd(e.target.value)}
+                            value={matchPwd}
+                            required
+                            aria-invalid={validMatch ? "false" : "true"}
+                            aria-describedby="confirmnote"
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={() => setMatchFocus(false)}
+                        />
+                        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            Must match the first password input field.
+                        </p>
+
+                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                    </form>
+                    <p>
+                        Already registered?<br />
+                        <span className="line">
+                            {/*put router link here*/}
+                            <a href="#">Sign In</a>
+                        </span>
+                    </p>
+                </section>
+            )}
+                
             </>
           )}
         </Modal.Body>
@@ -128,3 +286,4 @@ function Header(props) {
  // }
 }
 export default Header;
+
