@@ -10,6 +10,7 @@ import KursVse from "./KursVse";
 
 
 
+
 export default class FirstComponent_1 extends Component {
 
 /*  state = {
@@ -481,7 +482,7 @@ className="mb-3"
                         CLEAR
                     </Button>*/}
              </div>          
-       
+ 
 </div>
     </div>
     );
