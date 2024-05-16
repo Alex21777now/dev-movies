@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { useState, useEffect, useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   Navbar,
   Nav,
@@ -22,10 +23,11 @@ import Blog from '../Pages/Blog';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
+const REGISTER_URL = '/header';
 
 //export default class Header extends Component {
-function Header(props) {  
+//function Header(props) {  
+  const Header = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -115,6 +117,9 @@ const handleSubmit = async (e) => {
   }
 }
 
+
+
+
     return (
       <>
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
@@ -143,12 +148,12 @@ const handleSubmit = async (e) => {
                   className="mr-sm-2"
                 />&emsp;
                 <Button variant="outline-info mt-1">Search</Button>*/}
-                <Button variant="danger mt-1" onClick={() => handleCardClick()}>Sign UP</Button>
+                <div style={{ marginTop: '10px' }}>
+                <Button style={{ display: 'inline-block', marginRight: '10px' }}variant="danger mt-1" onClick={() => handleCardClick()}>Sign UP</Button>
                 &emsp;
-                <Button variant="success mt-1" onClick={() => handleCardClick()}>Login</Button>
-                &emsp;&emsp;
-                <Button variant="warning mt-1" onClick={() => handleCardClick()}>Func-1</Button>
-                &emsp;
+                <Button style={{ display: 'inline-block', marginRight: '10px' }}variant="success mt-1" onClick={() => handleCardClick()}>Login</Button>
+                </div>
+
               </Form>
             </Navbar.Collapse>
           </Container>
@@ -181,7 +186,7 @@ const handleSubmit = async (e) => {
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Register</h1>
+                    <h1>RegisterNA</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Username:
@@ -253,7 +258,7 @@ const handleSubmit = async (e) => {
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
-
+                        <br/>
                         <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
@@ -356,7 +361,7 @@ const handleSubmit = async (e) => {
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
-
+                        <br/>
                         <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
