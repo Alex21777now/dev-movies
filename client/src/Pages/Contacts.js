@@ -6,7 +6,7 @@ export default class Contacts extends Component {
         <div>
           <div>
           <p></p>
-                            <strong>ОБИРАЙ УЛЮБЛЕНІ ФІЛЬМИ</strong>
+                            <strong>CHOOSE YOUR FAVORITE MOVIES</strong>
                             <p>&nbsp;</p>
               Contacts
           </div>

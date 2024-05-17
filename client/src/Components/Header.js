@@ -148,10 +148,10 @@ const handleSubmit = async (e) => {
                   className="mr-sm-2"
                 />&emsp;
                 <Button variant="outline-info mt-1">Search</Button>*/}
-                <div style={{ marginTop: '10px' }}>
-                <Button style={{ display: 'inline-block', marginRight: '10px' }}variant="danger mt-1" onClick={() => handleCardClick()}>Sign UP</Button>
+                <div style={{ marginTop: '1px'}}>
+                <Button style={{ display: 'inline-block', marginRight: '3px' }}variant="danger mt-1" onClick={() => handleCardClick()}>Sign UP</Button>
                 &emsp;
-                <Button style={{ display: 'inline-block', marginRight: '10px' }}variant="success mt-1" onClick={() => handleCardClick()}>Login</Button>
+                <Button style={{ display: 'inline-block', marginRight: '3px' }}variant="success mt-1" onClick={() => handleCardClick()}>Login</Button>
                 </div>
 
               </Form>
