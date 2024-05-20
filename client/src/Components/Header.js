@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import axios from '../api/axios';
 import {
   Navbar,
   Nav,
@@ -23,7 +23,7 @@ import Blog from '../Pages/Blog';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/header';
+const REGISTER_URL = '/register';
 
 //export default class Header extends Component {
 //function Header(props) {  
@@ -62,9 +62,9 @@ const REGISTER_URL = '/header';
  const [errMsg, setErrMsg] = useState('');
  const [success, setSuccess] = useState(false);
 
-useEffect(() => {
+/*useEffect(() => {
 userRef.current.focus();
-}, [])
+}, [])*/
 
 useEffect(() => {
   setValidName(USER_REGEX.test(user));
@@ -175,7 +175,7 @@ const handleSubmit = async (e) => {
         </Router>
         <div className="App">
   
-        <>
+        {/*<>
             {success ? (
                 <section>
                     <h1>Success!</h1>
@@ -264,13 +264,13 @@ const handleSubmit = async (e) => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            {/*put router link here*/}
+                            {/*put router link here
                             <a href="#">Sign In</a>
                         </span>
                     </p>
                 </section>
             )}
-        </>
+        </> */}
       <Modal show={selectedMovie !== null} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>New User Registration</Modal.Title>
